@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var text = "Hello"
+    @State var text: CalcButtonText = .start
     @State var favorite = false
     
     var body: some View {
@@ -17,48 +17,33 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text(text)
+                Text(text.rawValue)
                     .foregroundColor(.white)
                     .font(.largeTitle)
-                
-                HStack {
-                    Button("1", action: {
-                        text = "1"
-                    })
-                    .padding()
-                    .background(Color.accentColor)
-                    .foregroundColor(.white)
-                    
-                    Button("2", action: {
-                        text = "2"
-                    })
-                    .padding()
-                    .background(Color.accentColor)
-                    .foregroundColor(.white)
-                    
-                    Button("3", action: {
-                        text = "3"
-                    })
-                    .padding()
-                    .background(Color.accentColor)
-                    .foregroundColor(.white)
-                }
                 HStack {
                     Button(action: {
                         favorite.toggle()
+                        text = favorite ? .star : .noStar
                     }) {
                         Image(systemName: favorite ? "star.fill" : "star")
-                            
+                        
                     }
+                    
                     Button(action: {
-                        text = "5"
+                        text = .one
                     }) {
-                        Text("5")
+                        Text("1")
+                    }
+                    
+                    Button(action: {
+                        text = .two
+                    }) {
+                        Text("2")
                     }
                 }
                 .buttonStyle(CalcButton())
-            }
-        }
+            } // End of VStack
+        } // End of ZStack
         
     }
 }
@@ -66,14 +51,5 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-    }
-}
-
-struct CalcButton: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .padding()
-            .background(.cyan)
-            .foregroundColor(.white)
     }
 }
