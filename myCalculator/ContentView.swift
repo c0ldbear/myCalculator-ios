@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var text: CalcButtonText = .start
-    @State var favorite = false
+    @State var text: String  = CalcButtonText.start.rawValue
+    @State var clean: Bool = true
     
     var body: some View {
         ZStack {
@@ -17,32 +17,91 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text(text.rawValue)
+                Text(text)
                     .foregroundColor(.white)
                     .font(.largeTitle)
+                
+                // Top Row
                 HStack {
                     Button(action: {
-                        favorite.toggle()
-                        text = favorite ? .star : .noStar
+//                        text = CalcButtonText.clear.rawValue
                     }) {
-                        Image(systemName: favorite ? "star.fill" : "star")
-                        
+                        Text("-")
                     }
                     
                     Button(action: {
-                        text = .one
+                        text += CalcButtonText.seven.rawValue
+                    }) {
+                        Text(CalcButtonText.seven.rawValue)
+                    }
+                    
+                    Button(action: {
+                        text += CalcButtonText.eight.rawValue
+                    }) {
+                        Text(CalcButtonText.eight.rawValue)
+                    }
+                    
+                    Button(action: {
+                        text += CalcButtonText.nine.rawValue
+                    }) {
+                        Text(CalcButtonText.nine.rawValue)
+                    }
+                }
+                // Middle Row
+                HStack {
+                    Button(action: {
+//                        text = CalcButtonText.clear.rawValue
+                    }) {
+                        Text("+")
+                    }
+                    
+                    Button(action: {
+                        text += CalcButtonText.four.rawValue
+                    }) {
+                        Text(CalcButtonText.four.rawValue)
+                    }
+                    
+                    Button(action: {
+                        text += CalcButtonText.five.rawValue
+                    }) {
+                        Text(CalcButtonText.five.rawValue)
+                    }
+                    
+                    Button(action: {
+                        text += CalcButtonText.six.rawValue
+                    }) {
+                        Text(CalcButtonText.six.rawValue)
+                    }
+                }
+                // Bottom Row
+                HStack {
+                    Button(action: {
+                        text = CalcButtonText.clear.rawValue
+                    }) {
+                        Image(systemName:  "star.fill" )
+                    }
+                    
+                    Button(action: {
+                        text += CalcButtonText.one.rawValue
                     }) {
                         Text("1")
                     }
                     
                     Button(action: {
-                        text = .two
+                        text += CalcButtonText.two.rawValue
                     }) {
                         Text("2")
                     }
+                    
+                    Button(action: {
+                        text += CalcButtonText.three.rawValue
+                    }) {
+                        Text(CalcButtonText.three.rawValue)
+                    }
                 }
-                .buttonStyle(CalcButton())
+                
             } // End of VStack
+            .buttonStyle(CalcButton())
         } // End of ZStack
         
     }
