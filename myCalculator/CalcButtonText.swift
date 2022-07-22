@@ -8,8 +8,7 @@
 import Foundation
 
 enum CalcButtonText: String {
-    case start = "Welcome"
-    case clear = ""
+    case zero = "0"
     case one = "1"
     case two = "2"
     case three = "3"
@@ -19,5 +18,12 @@ enum CalcButtonText: String {
     case seven = "7"
     case eight = "8"
     case nine = "9"
-    case zero = "0"
+    case clear = ""
+    case addition = "+"
+    case substraction = "-"
+    case multiplication = "x"
+    case division = "÷"
+    case sign = "-/+"
+    case decimal = "."
+    case percent = "%"
 }

@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var text: String  = CalcButtonText.start.rawValue
+    @State var text: String  = "Welcome"
     @State var clean: Bool = true
+    
+    private let rows: [[CalcButtonText]] = [
+        [.zero, .decimal],
+        [.substraction, .one, .two, .three],
+        [.addition, .four, .five, .six],
+        [.multiplication, .seven, .eight, .nine],
+        [.division, .clear ]
+    ].reversed()
     
     var body: some View {
         ZStack {
@@ -17,89 +25,30 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack {
+                Spacer()
+                Spacer()
                 Text(text)
                     .foregroundColor(.white)
                     .font(.largeTitle)
                 
-                // Top Row
-                HStack {
-                    Button(action: {
-//                        text = CalcButtonText.clear.rawValue
-                    }) {
-                        Text("-")
-                    }
-                    
-                    Button(action: {
-                        text += CalcButtonText.seven.rawValue
-                    }) {
-                        Text(CalcButtonText.seven.rawValue)
-                    }
-                    
-                    Button(action: {
-                        text += CalcButtonText.eight.rawValue
-                    }) {
-                        Text(CalcButtonText.eight.rawValue)
-                    }
-                    
-                    Button(action: {
-                        text += CalcButtonText.nine.rawValue
-                    }) {
-                        Text(CalcButtonText.nine.rawValue)
+                Spacer()
+                ForEach(rows, id: \.self) {row in
+                    HStack {
+                        ForEach(row, id: \.self) { calcButton in
+                            Button(action: {
+                                text = calcButton.rawValue
+                            }) {
+                                switch calcButton {
+                                case .clear:
+                                    Image(systemName: "star.fill")
+                                default:
+                                    Text(calcButton.rawValue)
+                                }
+                            }
+                        }
                     }
                 }
-                // Middle Row
-                HStack {
-                    Button(action: {
-//                        text = CalcButtonText.clear.rawValue
-                    }) {
-                        Text("+")
-                    }
-                    
-                    Button(action: {
-                        text += CalcButtonText.four.rawValue
-                    }) {
-                        Text(CalcButtonText.four.rawValue)
-                    }
-                    
-                    Button(action: {
-                        text += CalcButtonText.five.rawValue
-                    }) {
-                        Text(CalcButtonText.five.rawValue)
-                    }
-                    
-                    Button(action: {
-                        text += CalcButtonText.six.rawValue
-                    }) {
-                        Text(CalcButtonText.six.rawValue)
-                    }
-                }
-                // Bottom Row
-                HStack {
-                    Button(action: {
-                        text = CalcButtonText.clear.rawValue
-                    }) {
-                        Image(systemName:  "star.fill" )
-                    }
-                    
-                    Button(action: {
-                        text += CalcButtonText.one.rawValue
-                    }) {
-                        Text("1")
-                    }
-                    
-                    Button(action: {
-                        text += CalcButtonText.two.rawValue
-                    }) {
-                        Text("2")
-                    }
-                    
-                    Button(action: {
-                        text += CalcButtonText.three.rawValue
-                    }) {
-                        Text(CalcButtonText.three.rawValue)
-                    }
-                }
-                
+                Spacer()
             } // End of VStack
             .buttonStyle(CalcButton())
         } // End of ZStack
