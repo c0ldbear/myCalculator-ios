@@ -13,6 +13,7 @@
 		13DC6033288A84B000608F5D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13DC6032288A84B000608F5D /* Preview Assets.xcassets */; };
 		13DC6553288A94AA0001326A /* CalcButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC6552288A94AA0001326A /* CalcButtonStyle.swift */; };
 		13DC6555288A97110001326A /* CalcButtonText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC6554288A97110001326A /* CalcButtonText.swift */; };
+		13DC6559288AD29E0001326A /* CalculatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DC6558288AD29E0001326A /* CalculatorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		13DC6032288A84B000608F5D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		13DC6552288A94AA0001326A /* CalcButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcButtonStyle.swift; sourceTree = "<group>"; };
 		13DC6554288A97110001326A /* CalcButtonText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcButtonText.swift; sourceTree = "<group>"; };
+		13DC6558288AD29E0001326A /* CalculatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			children = (
 				13DC602B288A84AF00608F5D /* myCalculatorApp.swift */,
 				13DC602D288A84AF00608F5D /* ContentView.swift */,
+				13DC6558288AD29E0001326A /* CalculatorModel.swift */,
 				13DC6554288A97110001326A /* CalcButtonText.swift */,
 				13DC6552288A94AA0001326A /* CalcButtonStyle.swift */,
 				13DC602F288A84B000608F5D /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13DC602E288A84AF00608F5D /* ContentView.swift in Sources */,
+				13DC6559288AD29E0001326A /* CalculatorModel.swift in Sources */,
 				13DC6553288A94AA0001326A /* CalcButtonStyle.swift in Sources */,
 				13DC602C288A84AF00608F5D /* myCalculatorApp.swift in Sources */,
 				13DC6555288A97110001326A /* CalcButtonText.swift in Sources */,
