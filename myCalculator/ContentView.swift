@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var text: String  = "Welcome"
+    let title = "Calculator".uppercased()
+    @State var text: String  = ""
     @State var clean: Bool = true
     @State var calculatorViewModel = CalculatorViewModel()
     
@@ -27,18 +28,41 @@ struct ContentView: View {
             
             VStack {
                 Spacer()
-                Spacer()
-                Text(text)
+                Text(title)
                     .foregroundColor(.white)
                     .font(.largeTitle)
+                Spacer()
+                .foregroundColor(.gray)
+                .font(.subheadline)
+                Text(text)
+                    .foregroundColor(.white)
+                    .font(.title)
                 
                 Spacer()
                 ForEach(rows, id: \.self) {row in
                     HStack {
                         ForEach(row, id: \.self) { calcButton in
                             Button(action: {
-                                text = calcButton.rawValue
-                            }) {
+                                let rawString = calcButton.rawValue
+                                switch calcButton { // TODO: Move this logic to ViewModel?
+                                case .clear:
+                                    text = rawString
+                                    calculatorViewModel.clear()
+                                case .addition, .substraction, .multiplication, .division:
+                                    calculatorViewModel.setOperation(rawString)
+                                    calculatorViewModel.setInput(text)
+                                    text = ""
+                                case .equal:
+                                    calculatorViewModel.setInput(text)
+                                    text = calculatorViewModel.calculateResult()
+                                    calculatorViewModel.clear()
+                                case .sign:
+                                    text = calculatorViewModel.toggleSign(text)
+                                default:
+                                    text += rawString
+                                }
+                                
+                            }) { // Set the "text" of the button
                                 switch calcButton {
                                 case .clear:
                                     Image(systemName: "star.fill")

@@ -15,15 +15,20 @@ struct CalculatorModel {
         case division
         case none
         
-        init(_ operation: String) {
-            switch operation.lowercased() {
-            case "addition":
+        init(_ operation: String?) {
+            guard let operation = operation?.lowercased() else {
+                self = .none
+                return
+            }
+            
+            switch operation {
+            case "+":
                 self = .addition
-            case "substraction":
+            case "-":
                 self = .substraction
-            case "multiplication":
+            case "x":
                 self = .multiplication
-            case "division":
+            case "÷":
                 self = .division
             default:
                 self = .none
@@ -37,17 +42,18 @@ struct CalculatorModel {
     private var result: Double?
     private var currentOperator: Operation? 
     
-   
-    mutating func setInput1(_ input: Double?) {
-        input1 = input
+    mutating func setInput(_ input: Double?) {
+        if input1 == nil {
+            print("Set input1")
+            input1 = input
+        } else {
+            print("Set input2")
+            input2 = input
+        }
     }
     
-    mutating func setInput2(_ input: Double?) {
-        input2 = input
-    }
-    
-    mutating func setOperator(_ selectedOperator: Operation?) {
-        currentOperator = selectedOperator
+    mutating func setOperator(_ selectedOperator: String?) {
+        currentOperator = Operation(selectedOperator)
     }
     
     mutating func getResult() -> Double {
@@ -72,4 +78,16 @@ struct CalculatorModel {
             return
         }
     }
+    
+    mutating func reset() {
+        input1 = nil
+        input2 = nil
+        result = nil
+        currentOperator = nil
+    }
+    
+    func toggleSign(_ input: Double?) -> Double {
+        return -1 * (input ?? 0)
+    }
+    
 }
