@@ -10,13 +10,14 @@ import SwiftUI
 struct ContentView: View {
     @State var text: String  = "Welcome"
     @State var clean: Bool = true
+    @State var calculatorViewModel = CalculatorViewModel()
     
     private let rows: [[CalcButtonText]] = [
-        [.zero, .decimal],
+        [.equal,  .decimal, .zero],
         [.substraction, .one, .two, .three],
         [.addition, .four, .five, .six],
         [.multiplication, .seven, .eight, .nine],
-        [.division, .clear ]
+        [.sign, .division, .clear]
     ].reversed()
     
     var body: some View {
