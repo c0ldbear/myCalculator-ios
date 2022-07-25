@@ -14,12 +14,12 @@ struct ContentView: View {
     @State var calculatorViewModel = CalculatorViewModel()
     
     private let rows: [[CalcButtonText]] = [
-        [.equal,  .decimal, .zero],
-        [.substraction, .one, .two, .three],
-        [.addition, .four, .five, .six],
+        [.division, .sign, .clear],
         [.multiplication, .seven, .eight, .nine],
-        [.sign, .division, .clear]
-    ].reversed()
+        [.addition, .four, .five, .six],
+        [.substraction, .one, .two, .three],
+        [.equal,  .decimal, .zero]
+    ]
     
     var body: some View {
         ZStack {
