@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var text: CalcButtonText = .start
-    @State var favorite = false
+    let title = "C a l c u l a t o r".uppercased()
+    @State var text: String  = ""
+    @State var clean: Bool = true
+    @State var calculatorViewModel = CalculatorViewModel()
+    
+    private let rows: [[CalcButtonText]] = [
+        [.equal,  .decimal, .zero],
+        [.substraction, .one, .two, .three],
+        [.addition, .four, .five, .six],
+        [.multiplication, .seven, .eight, .nine],
+        [.sign, .division, .clear]
+    ].reversed()
     
     var body: some View {
         ZStack {
@@ -17,32 +27,59 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack {
-                Text(text.rawValue)
+                Spacer()
+                Text(title)
+                    .padding()
                     .foregroundColor(.white)
                     .font(.largeTitle)
-                HStack {
-                    Button(action: {
-                        favorite.toggle()
-                        text = favorite ? .star : .noStar
-                    }) {
-                        Image(systemName: favorite ? "star.fill" : "star")
-                        
-                    }
-                    
-                    Button(action: {
-                        text = .one
-                    }) {
-                        Text("1")
-                    }
-                    
-                    Button(action: {
-                        text = .two
-                    }) {
-                        Text("2")
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.gray, lineWidth: 2)
+                    )
+                Spacer()
+                
+                Text(text)
+                    .foregroundColor(.white)
+                    .font(.title)
+                
+                Spacer()
+                ForEach(rows, id: \.self) {row in
+                    HStack {
+                        ForEach(row, id: \.self) { calcButton in
+                            Button(action: {
+                                let rawString = calcButton.rawValue
+                                switch calcButton { // TODO: Move this logic to ViewModel?
+                                case .clear:
+                                    text = rawString
+                                    calculatorViewModel.clear()
+                                case .addition, .substraction, .multiplication, .division:
+                                    calculatorViewModel.setOperation(rawString)
+                                    calculatorViewModel.setInput(text)
+                                    text = ""
+                                case .equal:
+                                    calculatorViewModel.setInput(text)
+                                    text = calculatorViewModel.calculateResult()
+                                    calculatorViewModel.clear()
+                                case .sign:
+                                    text = calculatorViewModel.toggleSign(text)
+                                default:
+                                    text += rawString
+                                }
+                                
+                            }) { // Set the "text" of the button
+                                switch calcButton {
+                                case .clear:
+                                    Image(systemName: "star.fill")
+                                default:
+                                    Text(calcButton.rawValue)
+                                }
+                            }
+                        }
                     }
                 }
-                .buttonStyle(CalcButton())
+                Spacer()
             } // End of VStack
+            .buttonStyle(CalcButton())
         } // End of ZStack
         
     }

@@ -11,9 +11,10 @@ import SwiftUI
 struct CalcButton: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .padding()
+            .frame(width: 50, height: 50)
             .foregroundColor(.white)
             .background(.cyan)
             .cornerRadius(5)
+            .font(.title)
     }
 }
