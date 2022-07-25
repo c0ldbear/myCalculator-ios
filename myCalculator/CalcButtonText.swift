@@ -26,4 +26,5 @@ enum CalcButtonText: String {
     case sign = "-/+"
     case decimal = "."
     case percent = "%"
+    case equal = "="
 }
