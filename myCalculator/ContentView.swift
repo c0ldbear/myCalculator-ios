@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let title = "C a l c u l a t o r".uppercased()
+    let title = "m i n i r a e k n a r e".uppercased()
     @State var text: String  = ""
     @State var clean: Bool = true
     @State var calculatorViewModel = CalculatorViewModel()
