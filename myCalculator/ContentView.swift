@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let title = "Calculator".uppercased()
+    let title = "C a l c u l a t o r".uppercased()
     @State var text: String  = ""
     @State var clean: Bool = true
     @State var calculatorViewModel = CalculatorViewModel()
@@ -29,11 +29,15 @@ struct ContentView: View {
             VStack {
                 Spacer()
                 Text(title)
+                    .padding()
                     .foregroundColor(.white)
                     .font(.largeTitle)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.gray, lineWidth: 2)
+                    )
                 Spacer()
-                .foregroundColor(.gray)
-                .font(.subheadline)
+                
                 Text(text)
                     .foregroundColor(.white)
                     .font(.title)
