@@ -15,6 +15,7 @@ struct CalcButton: ButtonStyle {
             .foregroundColor(.white)
             .background(.cyan)
             .cornerRadius(5)
+            .shadow(color: .white, radius: 0, x: 2, y: 2)
             .font(.title)
     }
 }
