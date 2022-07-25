@@ -22,7 +22,7 @@ final class CalculatorViewModel: ObservableObject {
     
     func calculateResult() -> String {
         print("Calculating result!")
-        return "\(calculatorModel.getResult())"
+        return String(format: "%g", calculatorModel.getResult())
     }
     
     func clear() {
